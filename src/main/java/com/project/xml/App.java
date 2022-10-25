@@ -15,7 +15,18 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
  */
 public class App 
 {
+    // Main xml serializer/deserializer
+    public static void mainXml(Class _class) {
+        File file = App.serializeXml(_class);
+        Class c = App.deserializeXml(file);
 
+        System.out.println(" - printing copied class data: ");
+        System.out.println(c.getNumber() + "\n" + c.getSection() + "\n" + c.getClassroom() + "\n");
+        for (Student student : c.getStudents()) {
+            System.out.println(student.getName() + " - " + student.getSurname() + " - " + student.getDate() + "\n");
+        }
+    }
+    // xml methods
     public static File serializeXml(Class _class) {
         System.out.println(" - serializing on file: generated.xml");
         try {
@@ -37,6 +48,18 @@ public class App
         return null;
     }
 
+    // Main json serializer/deserializer
+    public static void mainJson(Class _class) {
+        File file = App.serializeJson(_class);
+        Class c = App.deserializeJson(file);
+
+        System.out.println(" - printing copied class data: ");
+        System.out.println(c.getNumber() + "\n" + c.getSection() + "\n" + c.getClassroom() + "\n");
+        for (Student student : c.getStudents()) {
+            System.out.println(student.getName() + " - " + student.getSurname() + " - " + student.getDate() + "\n");
+        }
+    }
+    // json methods
     public static File serializeJson(Class _class) {
         System.out.println(" - serializing on file: generated.json");
         try {
@@ -56,28 +79,6 @@ public class App
             return c;
         } catch (IOException e) { e.printStackTrace(); }
         return null;
-    }
-
-    public static void mainXml(Class _class) {
-        File file = App.serializeXml(_class);
-        Class c = App.deserializeXml(file);
-
-        System.out.println(" - printing copied class data: ");
-        System.out.println(c.getNumber() + "\n" + c.getSection() + "\n" + c.getClassroom() + "\n");
-        for (Student student : c.getStudents()) {
-            System.out.println(student.getName() + " - " + student.getSurname() + " - " + student.getDate() + "\n");
-        }
-    }
-
-    public static void mainJson(Class _class) {
-        File file = App.serializeJson(_class);
-        Class c = App.deserializeJson(file);
-
-        System.out.println(" - printing copied class data: ");
-        System.out.println(c.getNumber() + "\n" + c.getSection() + "\n" + c.getClassroom() + "\n");
-        for (Student student : c.getStudents()) {
-            System.out.println(student.getName() + " - " + student.getSurname() + " - " + student.getDate() + "\n");
-        }
     }
 
     public static void main( String[] args )
